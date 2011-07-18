@@ -153,5 +153,44 @@
             (unless (string-match "question" oddmuse-post)
               (setq oddmuse-post (concat "uihnscuskc=1;" oddmuse-post)))))
 
+;;-------------------------------- Add by crazycode BEGIN --------------------------------
+(setq frame-title-format '("Emacs@"system-name": %b %+%+ %f"))
+
+;;加入行号显示
+(require 'linum)
+(global-linum-mode t)
+
+;;鼠标自动避开指针，如当你输入的时候，指针到了鼠标的位置，鼠标有点挡住视线了
+(mouse-avoidance-mode 'animate)
+
+;;设置光标为短线
+(setq-default cursor-type 'bar)
+
+(setq scroll-step 1
+scroll-margin 3
+scroll-conservatively 10000)
+;;设定句子结尾，主要是针对中文设置
+(setq sentence-end "\\([¡££¡£¿]\\|¡¡\\|[.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*")
+(setq sentence-end-double-space nil)
+;;去掉Emacs和gnus启动时的引导界面
+(setq inhibit-startup-message t)
+
+
+(setq-default kill-whole-line t)
+;;设定删除保存记录为200，可以方便以后无限恢复
+(setq kill-ring-max 200)
+;;增大使用查找函数和变量的寻找范围
+(setq apropos-do-all t)
+
+;; 保存上次打开的文件
+(desktop-save-mode 1)
+
+;;你是不是经常按 C-y 放进一个 kill-ring 里的单元。然后 M-y，M-y，…… 来寻找你需要的很久以前剪切下来的东西？很费事吧？用了 browse-kill-ring 就好了。你只需要把它绑定到一个热键，比如 C-c k: 就能出现这样一个buffer
+(require 'browse-kill-ring)
+(global-set-key [(control c)(k)] 'browse-kill-ring)
+(global-set-key (kbd "C-c M-y") 'browse-kill-ring)
+
+;;--------------------------------   Add by crazycode END --------------------------------
+
 (provide 'starter-kit-misc)
 ;;; starter-kit-misc.el ends here
